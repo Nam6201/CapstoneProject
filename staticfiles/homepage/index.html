@@ -1,0 +1,258 @@
+﻿{% extends "basic.html" %}
+{% load static %}
+
+
+{% block head %}
+
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="jumbotron">
+
+  <h1 class="display-4">Make it easier for you to diagnose diseases...</h1>
+  <p class="lead">
+    Are you facing some health problems but not sure what disease you have?
+    Don't have time to go to the hospital right away?
+    Don't worry, Here, we propose a web application that allows users to get instant guidance on their disease through
+    an intelligent system.
+    The application is fed with various details and the disease associated with those details.
+    The application allows user to share their disease related issues.It then processes user specific details to check
+    for various illness that could be associated with it.
+    Here we use some intelligent data mining techniques to guess the most accurate illness that could be associated with
+    patient's details. Based on result, patient can contact doctor accordingly for further treatment.
+
+
+    {% if user.is_authenticated %}
+
+
+    {% else %}
+
+  <p class="lead">
+    <button type="button" class="btn btn-primary btn-lg mt-3" data-toggle="modal"
+      data-target=".bd-example-modal-lg">Click Here To Get Started</button>
+  </p>
+</div>
+
+<br>
+<div class="container mt-3 mb-3" style="width:fit-content;">
+  <center>
+    <h1>You Can Sign In As </h1>
+  </center>
+
+  <form>
+    <div class="container mt-5 mb-5 mx-5">
+      <div class="row">
+        <div class="col">
+          <a href="{% url 'sign_in_admin' %}">
+            <img alt="admin" src="{% static 'homepage/adminlogo.png' %}" class="img">
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="{% url 'sign_in_doctor' %}">
+            <img alt="doctor" src="{% static 'homepage/doctorlogo.png' %}" class="img">
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="{% url 'sign_in_patient' %}">
+            <img alt="patient" src="{% static 'homepage/patientlogo.png' %}" class="img">
+          </a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endif %}
+
+<br>
+
+<!-- Large modal -->
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div>
+        <h1 class="text-center mt-3">Sign In As</h1>
+      </div>
+      <br><br>
+
+      <center>
+        <form>
+          <div class="container mt-5 mb-5">
+            <div class="row">
+              <div class="col">
+                <a href="{% url 'sign_in_admin' %}">
+                  <img alt="admin" src="{% static 'homepage/adminlogo.png' %}" class="img">
+                </a>
+              </div>
+
+              <div class="col">
+                <a href="{% url 'sign_in_doctor' %}">
+                  <img alt="doctor" src="{% static 'homepage/doctorlogo.png' %}" class="img">
+                </a>
+              </div>
+
+              <div class="col">
+                <a href="{% url 'sign_in_patient' %}">
+                  <img alt="patient" src="{% static 'homepage/patientlogo.png' %}" class="img">
+                </a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </center>
+
+    </div>
+  </div>
+</div>
+
+<!-- Large modal -->
+
+<div class="modal fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div>
+        <h1 class="text-center">Sign Up As</h1>
+      </div>
+      <br>
+
+      <div>
+        <form>
+          <div class="container">
+            <div class="row justify-content-center">
+
+              <div class="col-auto mr-5">
+                <a href="{% url 'signup_doctor' %}">
+                  <img alt="doctor" src="{% static 'homepage/doctorlogo.png' %}" class="img">
+                </a>
+              </div>
+
+              <div class="col-auto ml-5">
+                <a href="{% url 'signup_patient' %}">
+                  <img alt="patient" src="{% static 'homepage/patientlogo.png' %}" class="img">
+                </a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<br>
+<h1 class="text-center">Meet Our Founding Team With Experienced Doctors</h1>
+<div class="row mt-5 mb-5">
+  <div class="col">
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title">Dr. Nam Nguyen </h5>
+        <img alt="admin" src="{% static 'homepage/doctornam.jpg' %}" width="200" height="200" class="rounded">
+        <p class="card-text mt-2">Cardiologist - Danang General Hospital - Danang.</p>
+
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title">Dr. Hani Doan </h5>
+        <img alt="admin" src="{% static 'homepage/doctorhani.jpg' %}" width="200" height="200" class="rounded">
+        <p class="card-text mt-2">Dermatologist- Danang Dermatology Hospital - Danang.</p>
+
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title">Dr. Truc Nguyen</h5>
+        <img alt="admin" src="{% static 'homepage/doctortruc.jpg' %}" width="200" height="200" class="rounded">
+        <p class="card-text mt-2">Gastroenterologist - Vinmec Hospital - Danang.</p>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="row mt-5 mb-5">
+  <div class="col">
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title">Dr. Huyen Phan </h5>
+        <img alt="admin" src="{% static 'homepage/doctorhuyen.jpg' %}" width="200" height="200" class="rounded">
+        <p class="card-text mt-2">ENT Specialist - C Hospital - Danang.</p>
+
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title">Dr. Hien Tran</h5>
+        <img alt="admin" src="{% static 'homepage/doctorhien.jpg' %}" width="200" height="200" class="rounded">
+        <p class="card-text mt-2">Neurologist - Hue Central Hospital - Hue.</p>
+
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title">DR. Nghi Nguyen</h5>
+        <img alt="admin" src="{% static 'homepage/doctornghi.jpg' %}" width="200" height="200" class="rounded">
+        <p class="card-text mt-2">Allergist Immunologist - Family Hospital - Danang.</p>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<br>
+
+<div id="footer" class="card bg-dark text-white">
+  <div class="card-body" style="font-size: large; font-weight: bold;">
+    For More Information, Please Contact Us At
+    <ul class="mt-3">
+      <li>
+        <h5 class="mb-1">Email: nguyenducnam62@gmail.com</h5>
+      </li>
+      <li>
+        <h5 class="mb-1">Phone number: 0333576249</h5>
+      </li>
+      <li>
+        <h5 class="mb-1">Address: Danang, Vietnam</h5>
+        <div class="footer-copyright text-center">© 2023 Copyright:
+          <a href="#"> Doctorcare</a>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</div>
+
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+{% endblock %}

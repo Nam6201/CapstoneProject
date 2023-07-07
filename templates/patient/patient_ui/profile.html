@@ -1,0 +1,148 @@
+{% extends "basic.html" %}
+{% load static %}
+
+
+{% block head %}
+
+{% endblock %}
+
+
+
+
+{% block body %}
+
+
+
+<br>
+<div class="container mt-3 mb-3">
+  <div>
+    <h1 class="text-center mb-3">Patient Profile</h1>
+    </div<br>
+
+    <div class="row">
+      <div class="col-6">
+
+        <div class="card" style="width:430px">
+          <img class="card-img-top" src="{% static 'homepage/patientlogo.png' %}" alt="Card image" style="width:100%;">
+          <div class="card-body">
+            <h4 class="card-title">Patient Name: {{puser.patient.name}}</h4>
+            <p class="card-text">Patient Email: {{puser.email}}</p>
+            <p class="card-text">Patient Phone: {{puser.patient.mobile_no}}</p>
+            <p class="card-text">Patient Address: {{puser.patient.address}}</p>
+            <a href="{% url 'pviewprofile' puser.username %}" class="btn btn-outline-primary btn-block">View Your
+              Profile</a>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-6">
+        <div class="row">
+
+          <!-- <a id="links" class="btn btn-outline-info btn-block" href="{% url 'checkdisease' %}">check disease </a><br>
+               </div>
+                
+               <div class="row">
+                <a class="btn btn-outline-info btn-block" href="{% url 'pconsultation_history' %}">view consulation history</a><br>
+                </div>
+
+               <div class="row">
+                <button class="btn btn-outline-info btn-block" data-toggle="modal" data-target="#myModal-feedback">Give feedbacks </button><br>
+                </div> -->
+          <div class="col-6">
+            <div class="card border-secondary" style="width: 230px; height: 310px;">
+              <img class="card-img-top" src="{% static 'homepage/checklogo1.png' %}" alt="Card image cap">
+              <div class="card-body d-grid justify-content-center align-items-end">
+                <a id="links" class="btn btn-outline-info btn-block" href="{% url 'checkdisease' %}">Check Your Disease
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 ">
+            <div class="card border-secondary" style="width: 230px; height: 310px;">
+              <img class="card-img-top" src="{% static 'homepage/feedbacklogo1.png' %}" alt="Card image cap">
+              <div class="card-body">
+                <button class="btn btn-outline-info btn-block" data-toggle="modal" data-target="#myModal-feedback">Give
+                  Feedbacks To Us </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row mt-3">
+          <div class="col d-flex justify-content-center">
+            <div class="card border-secondary" style="width: 230px; height: 330px;">
+              <img class="card-img-top" src="{% static 'homepage/consullogo1.png' %}" alt="Card image cap">
+              <div class="card-body d-grid justify-content-center align-items-end">
+                <a class="btn btn-outline-info btn-block" href="{% url 'pconsultation_history' %}">View Consulation
+                  History</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal-feedback">
+          <div class="modal-dialog modal-xl ">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Feedbacks</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <form action="post_feedback" method="POST"> {% csrf_token %}
+                  <div class="form-group">
+                    <label for="comment">Give feeback:</label>
+                    <textarea class="form-control" rows="5" id="feedback" name="feedback"></textarea>
+                  </div>
+
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button id="submit" type="submit" class="btn btn-success" data-dismiss="modal"
+                  style="color: white;">Submit</button>
+              </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <script>
+
+
+        $(document).ready(function () {
+
+          $('#submit').click(function (event) {
+
+            $.ajax({
+              url: "{% url 'post_feedback' %}",
+              type: "POST",
+              data: {
+                feedback: $('#feedback').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+              },
+
+              success: function (data) {
+                alert(data);
+              }
+            });
+
+
+          });
+
+        });
+
+      </script>
+
+
+      {% endblock %}

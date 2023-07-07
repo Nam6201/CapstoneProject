@@ -1,0 +1,137 @@
+{% extends "basic.html" %}
+{% load static %}
+
+
+{% block head %}
+
+{% endblock %}
+
+
+
+
+{% block body %}
+
+
+
+<br>
+<div class="container mt-3 mb-3">
+  <div>
+    <h1 class="text-center">Doctor Profile</h1>
+  </div><br>
+
+
+  <div class="row">
+    <div class="col-6">
+
+      <div class="card border-secondary" style="width:400px">
+        <img class="card-img-top" src="{% static 'homepage/doctorlogo.png' %}" alt="Card image" style="width:100%;">
+        <div class="card-body">
+          <h4 class="card-title">Doctor Name: {{user.doctor.name}}</h4>
+          <!-- <p class="card-text">Doctor ID: {{user.doctor.user_id}}</p> -->
+          <p class="card-text">Doctor Email: {{user.email}}</p>
+          <p class="card-text">Doctor Specialization: {{duser.doctor.specialization}}</p>
+          <p class="card-text">Doctor State Medical Council: {{duser.doctor.State_Medical_Council}}</p>
+          <div class="text-center">
+            <a href="{% url 'dviewprofile' user.username %}" class="btn btn-outline-primary btn-block">View Your
+              Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6">
+
+      <!-- <div class="row">
+             <a class="btn btn-outline-primary btn-block btn-lg" href="{% url 'dconsultation_history' %}">View Consulation History</a><br>
+             </div>
+            <div class="row">
+              <button class="btn btn-outline-primary btn-block btn-lg" data-toggle="modal" data-target="#myModal-feedback">Give Feedbacks </button><br>
+            </div> -->
+      <div class="row" style="margin-top: 50px;">
+
+        <div class="col-6">
+          <div class="card border-secondary mr-10" style="width: 260px; height: 350px;">
+            <img class="card-img-top" src="{% static 'homepage/consullogo1.png' %}" alt="Card image cap">
+            <div class="card-body d-grid justify-content-center align-items-end">
+              <a class="btn btn-outline-primary btn-block" href="{% url 'dconsultation_history' %}">
+                View Consultation History
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="card border-secondary" style="width: 260px; height: 350px;">
+            <img class="card-img-top" src="{% static 'homepage/feedbacklogo1.png' %}" alt="Card image cap">
+            <div class="card-body d-grid justify-content-center align-items-end">
+              <button class="btn btn-outline-primary btn-block " data-toggle="modal"
+                data-target="#myModal-feedback">Give Feedbacks To Us </button>
+            </div>
+          </div>
+
+
+          <!-- The Modal -->
+          <div class="modal fade" id="myModal-feedback">
+            <div class="modal-dialog modal-xl ">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Feedbacks</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <form action="post_feedback" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                      <label for="comment">Give feeback:</label>
+                      <textarea class="form-control" rows="5" id="feedback" name="feedback"></textarea>
+                    </div>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button id="submit" type="submit" class="btn btn-success" data-dismiss="modal"
+                    style="color: white;">Submit</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+
+    $(document).ready(function () {
+
+      $('#submit').click(function (event) {
+
+        $.ajax({
+          url: "{% url 'post_feedback' %}",
+          type: "POST",
+          data: {
+            feedback: $('#feedback').val(),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+          },
+
+          success: function (data) {
+            alert(data);
+          }
+        });
+
+
+      });
+
+    });
+
+  </script>
+
+
+
+  {% endblock %}
