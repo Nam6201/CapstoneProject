@@ -1,1 +1,3 @@
-python manage.py migrate && gunicorn CapstoneProject.wsgi
+
+release: python manage.py migrate
+web: gunicorn CapstoneProject.wsgi
