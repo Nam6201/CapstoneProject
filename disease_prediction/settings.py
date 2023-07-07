@@ -27,7 +27,8 @@ SECRET_KEY = 'v3v5vfsn0xxjtmb=eoawoiw$5br4g0r&jy_l39995h_93l+-z5'
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['0.0.0.0',
+                 'https://capstoneproject-production-3b77.up.railway.app/']
 
 
 # Application definition
