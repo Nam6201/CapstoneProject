@@ -99,7 +99,7 @@ def signup_patient(request):
             return redirect('signup_patient')
 
     else:
-        return render(request, 'patient/signup_Form/signup.html')
+        return render(request, 'patient/signup_form/signup.html')
 
 
 def sign_in_patient(request):
@@ -159,7 +159,7 @@ def signup_doctor(request):
 
     if request.method == 'GET':
 
-        return render(request, 'doctor/signup_Form/signup.html')
+        return render(request, 'doctor/signup_form/signup.html')
 
     if request.method == 'POST':
 
